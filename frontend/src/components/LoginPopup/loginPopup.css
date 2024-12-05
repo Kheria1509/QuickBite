@@ -64,3 +64,27 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-container input {
+    flex: 1;
+    padding-right: 40px; /* Add space for the icon */
+  }
+  
+  .password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #777;
+  }
+  
+  .password-toggle-icon:hover {
+    color: #000;
+  }
+  
