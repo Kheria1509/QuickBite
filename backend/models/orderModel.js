@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   address: { type: Object, required: true }, // Ensure "Object" is capitalized
   status: { type: String, default: "Food Processing" },
-  date: { type: Date, default: Date.now }, // No parentheses in `Date.now`
+  date: { type: Date, default: Date.now() }, // No parentheses in `Date.now`
   payment: { type: Boolean, default: false }, // Fixed spelling of "payment"
 });
 
