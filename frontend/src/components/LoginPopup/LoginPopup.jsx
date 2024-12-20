@@ -41,7 +41,7 @@ const LoginPopup = ({ setShowLogin }) => {
 
     try {
       console.log("Request URL:", newUrl);
-      console.log("Payload:", payload);
+      // console.log("Payload:", payload);
 
       const response = await axios.post(newUrl, payload);
 
