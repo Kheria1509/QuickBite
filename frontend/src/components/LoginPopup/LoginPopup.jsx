@@ -14,6 +14,7 @@ const LoginPopup = ({ setShowLogin }) => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [isSubmitting, setIsSubmitting] = useState(false); // Prevent multiple submissions
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -26,24 +27,18 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-    let newUrl = url;
+    if (isSubmitting) return; // Prevent multiple clicks during submission
+    setIsSubmitting(true);
 
-    if (currState === "Login") {
-      newUrl += "/api/user/login";
-    } else {
-      newUrl += "/api/user/register";
-    }
-
+    const endpoint =
+      currState === "Login" ? "/api/user/login" : "/api/user/register";
     const payload =
       currState === "Login"
         ? { email: data.email, password: data.password }
         : { name: data.name, email: data.email, password: data.password };
 
     try {
-      console.log("Request URL:", newUrl);
-      // console.log("Payload:", payload);
-
-      const response = await axios.post(newUrl, payload);
+      const response = await axios.post(`${url}${endpoint}`, payload);
 
       if (response.data.success) {
         setToken(response.data.token);
@@ -55,6 +50,8 @@ const LoginPopup = ({ setShowLogin }) => {
     } catch (error) {
       console.error("Error during request:", error.response?.data || error.message);
       alert(error.response?.data?.message || "Something went wrong!");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -67,6 +64,7 @@ const LoginPopup = ({ setShowLogin }) => {
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
             alt="Close"
+            className="close-icon"
           />
         </div>
         <div className="login-popup-inputs">
@@ -109,8 +107,12 @@ const LoginPopup = ({ setShowLogin }) => {
             </span>
           </div>
         </div>
-        <button type="submit">
-          {currState === "Sign Up" ? "Create account" : "Login"}
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting
+            ? "Processing..." // Show processing state
+            : currState === "Sign Up"
+            ? "Create account"
+            : "Login"}
         </button>
         <div className="login-popup-condition">
           <input type="checkbox" required />
