@@ -45,7 +45,7 @@ const Navbar = ({ toggleMenu }) => {
       
       <div className="navbar-right">
         <div className="profile">
-          <img src={assets.admin_profile} alt="Admin Profile" />
+          <img src={assets.profile_image} alt="Admin Profile" />
           <p>Admin</p>
         </div>
         

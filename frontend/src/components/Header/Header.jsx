@@ -5,7 +5,8 @@ const Header = () => {
     <div className='header'>
       <div className="header-contents">
         <h2> order your favourite food here</h2>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, voluptas dolor? Voluptatem provident cum fuga odio quasi numquam vel, neque laboriosam commodi soluta ex animi nisi unde expedita error laudantium.</p>
+        <p> QuickBite is a trusted food delivery brand, bringing your favorite meals right to your doorstep. 
+        Experience fast, reliable, and delicious service with every order!</p>
          <button>View Menu</button>
 
 

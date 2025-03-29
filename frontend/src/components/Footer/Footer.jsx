@@ -13,9 +13,10 @@ const Footer = () => {
             Experience fast, reliable, and delicious service with every order!
           </p>
           <div className="footer-social-icons">
-            <img src={assets.facebook_icon} alt="Facebook" />
-            <img src={assets.twitter_icon} alt="Twitter" />
-            <img src={assets.linkedin_icon} alt="LinkedIn" />
+            <a href="#"><img src={assets.facebook_icon} alt="Facebook" /></a>
+            <a href="#"><img src={assets.twitter_icon} alt="Twitter" /></a>
+            <a href="#"><img src={assets.linkedin_icon} alt="LinkedIn" /></a>
+           
           </div>
         </div>
         <div className="footer-content-center">
@@ -25,19 +26,23 @@ const Footer = () => {
             <li>About us</li>
             <li>Delivery</li>
             <li>Privacy policy</li>
+            
           </ul>
         </div>
         <div className="footer-content-right">
           <h2>GET IN TOUCH</h2>
           <ul>
-            <li>+91 1234567890</li>
-            <li>amankheria09@gmail.com</li>
+            <li><i className="fas fa-phone"></i> +91 1234567890</li>
+            <li><i className="fas fa-envelope"></i> contact@quickbite.com</li>
+            <li><i className="fas fa-map-marker-alt"></i> 123 Food Street, Mumbai, India</li>
           </ul>
         </div>
       </div>
       <hr />
-      <p>Made by Aman Kheria @</p>
-      <p className="footer-copyright">Copyright 2024 © Quickbite.com - All Rights Reserved.</p>
+      <div className="footer-bottom">
+        <p>Made with <span className="heart">❤</span> by Aman Kheria</p>
+        <p className="footer-copyright">Copyright 2024 © Quickbite.com - All Rights Reserved.</p>
+      </div>
     </div>
   );
 };
