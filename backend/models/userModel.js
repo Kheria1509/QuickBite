@@ -17,17 +17,12 @@ const userSchema = new mongoose.Schema(
         enum: ["user", "admin"], // Only allow specific roles
       },
       cartData: {
-        type: [
-          {
-            productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-            quantity: { type: Number, required: true },
-          },
-        ],
-        default: [],
+        type: mongoose.Schema.Types.Mixed, // Allow both object and array structure
+        default: {}, // Default to empty object to avoid validation errors
       },
     },
     { minimize: false }
   );
 
-const userModel =mongoose.models.user || mongoose.model("user",userSchema);
+const userModel = mongoose.models.user || mongoose.model("user", userSchema);
 export default userModel;

@@ -57,42 +57,12 @@
 /* Mobile */
 @media (max-width: 768px) {
     .sidebar {
-        width: 80px;
-        position: fixed;
-        top: 60px;
-        left: -100px; /* Hidden by default */
-        height: calc(100vh - 60px);
-        transition: left 0.3s ease;
-        z-index: 100;
-        background-color: white;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    }
-    
-    .sidebar.mobile-open {
-        left: 0; /* Visible when mobile-open class is added */
-    }
-    
-    .sidebar-options {
-        padding-left: 10px;
-    }
-    
-    .sidebar-option {
-        justify-content: center;
-        padding: 15px 10px;
-    }
-    
-    .sidebar-option p {
-        display: none;
+        display: none;  /* Hide the sidebar completely on mobile - we'll use the navbar dropdown instead */
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .sidebar {
-        width: 60px;
-    }
-    
-    .sidebar-options {
-        padding-left: 5px;
-        gap: 15px;
+        display: none;
     }
 }

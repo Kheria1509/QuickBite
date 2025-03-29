@@ -52,7 +52,14 @@ export const register = async (req, res) => {
     const salt = await bcrypt.genSalt(Number(process.env.SALT || 10));
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new userModel({ name, email, password: hashedPassword });
+    // Create user with empty cartData
+    const newUser = new userModel({ 
+      name, 
+      email, 
+      password: hashedPassword,
+      cartData: {} // Explicitly initialize empty cartData
+    });
+    
     const user = await newUser.save();
     
     // Create tokens
@@ -98,6 +105,11 @@ export const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.json({ success: false, message: "Invalid Credentials" });
+    }
+
+    // Initialize cartData if it doesn't exist or is invalid
+    if (!user.cartData || typeof user.cartData !== 'object') {
+      user.cartData = {};
     }
 
     // Create tokens
