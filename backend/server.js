@@ -9,8 +9,12 @@ import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 import cookieParser from "cookie-parser";
 
+
+
 //app config
 const app = express()
+
+
 const port = process.env.PORT || 4000
 
 // Debug environment variables
@@ -22,7 +26,9 @@ console.log("Environment variables loaded:", {
 
 // CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174'], // Frontend origins
+
+  origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5176'], // Frontend origins
+
   credentials: true, // Allow cookies
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'token', 'Origin', 'Accept']
