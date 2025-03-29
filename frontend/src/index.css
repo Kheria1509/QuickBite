@@ -3,19 +3,22 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: outfit;
+  font-family: 'Outfit', sans-serif;
   scroll-behavior: smooth;
 }
 body{
   min-height: 100vh;
+  overflow-x: hidden;
 }
 a{
   text-decoration: none;
   color: inherit;
 }
 .app{
-  width: 80%;
-  margin: auto;
+  width: 85%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 @keyframes fadeIn{
   0%{
@@ -23,5 +26,39 @@ a{
   }
   100%{
     opacity: 1;
+  }
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 1200px) {
+  .app {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .app {
+    width: 95%;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app {
+    width: 100%;
+    padding: 0 15px;
+  }
+  
+  /* Improve typography for smaller screens */
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  p {
+    font-size: 0.95rem;
   }
 }

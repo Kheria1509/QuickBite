@@ -1,4 +1,3 @@
-
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
@@ -7,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Placing user order for frontend
 const placeOrder = async (req, res) => {
-  const frontend_url = "http://localhost:5173";
+  const frontend_url = "http://localhost:5174";
 
   try {
     // Save the new order
@@ -89,37 +88,29 @@ const userOrders = async (req, res) => {
   }
 };
 
-// Listing orders for admin pannel
+// Listing orders for admin panel
 const listOrders = async (req, res) => {
   try {
-    let userData = await userModel.findById(req.body.userId);
-    if (userData && userData.role === "admin") {
-      const orders = await orderModel.find({});
-      res.json({ success: true, data: orders });
-    } else {
-      res.json({ success: false, message: "You are not admin" });
-    }
+    // No need to check admin role - handled by middleware
+    const orders = await orderModel.find({});
+    res.json({ success: true, data: orders });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "Error" });
+    res.json({ success: false, message: "Error listing orders" });
   }
 };
 
-// api for updating status
+// API for updating status
 const updateStatus = async (req, res) => {
   try {
-    let userData = await userModel.findById(req.body.userId);
-    if (userData && userData.role === "admin") {
-      await orderModel.findByIdAndUpdate(req.body.orderId, {
-        status: req.body.status,
-      });
-      res.json({ success: true, message: "Status Updated Successfully" });
-    }else{
-      res.json({ success: false, message: "You are not an admin" });
-    }
+    // No need to check admin role - handled by middleware
+    await orderModel.findByIdAndUpdate(req.body.orderId, {
+      status: req.body.status,
+    });
+    res.json({ success: true, message: "Status Updated Successfully" });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "Error" });
+    res.json({ success: false, message: "Error updating status" });
   }
 };
 

@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import "./LoginPopup.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
-import axios from "axios";
+import { toast } from "react-toastify";
 
 const LoginPopup = ({ setShowLogin }) => {
-  const { url, setToken } = useContext(StoreContext);
+  const { setToken, api, loadCartData } = useContext(StoreContext);
 
   const [currState, setCurrState] = useState("Login");
   const [data, setData] = useState({
@@ -31,25 +31,35 @@ const LoginPopup = ({ setShowLogin }) => {
     setIsSubmitting(true);
 
     const endpoint =
-      currState === "Login" ? "/api/user/login" : "/api/user/register";
+      currState === "Login" ? "/api/auth/login" : "/api/auth/register";
     const payload =
       currState === "Login"
         ? { email: data.email, password: data.password }
         : { name: data.name, email: data.email, password: data.password };
 
     try {
-      const response = await axios.post(`${url}${endpoint}`, payload);
+      const response = await api.post(endpoint, payload);
 
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
+        
+        // Load cart data after successful login
+        await loadCartData();
+        
+        toast.success(
+          currState === "Login" 
+            ? "Login successful!" 
+            : "Account created successfully!"
+        );
+        
         setShowLogin(false);
       } else {
-        alert(response.data.message);
+        toast.error(response.data.message || "Authentication failed");
       }
     } catch (error) {
       console.error("Error during request:", error.response?.data || error.message);
-      alert(error.response?.data?.message || "Something went wrong!");
+      toast.error(error.response?.data?.message || "Something went wrong!");
     } finally {
       setIsSubmitting(false);
     }
@@ -94,6 +104,7 @@ const LoginPopup = ({ setShowLogin }) => {
               type={showPassword ? "text" : "password"} // Toggle type based on state
               placeholder="Password"
               required
+              minLength={8}
             />
             <span
               className="password-toggle-icon"

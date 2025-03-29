@@ -1,37 +1,119 @@
-.add{
-    width: 70%;
-    margin-left: max(5vw,25px);
-    margin-top: 50px;
-    color: #6d6d6d;
-    font-size: 16px ;
-}
-.add form{
-    gap: 20px;
-}
-
-.add-image-upload img{
-    width: 120px;
-}
-.add-product-name, .add-product-description{
-    width: max(40%,280px);
-}
-.add-product-name input,  .add-product-description textarea{
-    padding: 10px;
-}
-.add-category-price{
+.add {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
 }
-.add-category-price select,.add-category-price input{
-    max-width: 120px;
+
+.add-image-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.add-image-upload input[type="file"] {
+    max-width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-image-upload img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-name, .product-description {
+    width: 100%;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
 }
-.add-button{
-    max-width: 120px;
+
+.product-description {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.category-price {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.category-price select, 
+.category-price input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.add-btn {
+    background-color: tomato;
+    color: white;
     border: none;
-    padding: 10px;
-    background-color: black;
-    color: aliceblue;
+    padding: 12px 20px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #e74c3c;
+}
+
+/* Form validation styles */
+.add form input:invalid,
+.add form select:invalid,
+.add form textarea:invalid {
+    border-color: #e74c3c;
+}
+
+.add form input:focus,
+.add form select:focus,
+.add form textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.5);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .add {
+        padding: 15px;
+    }
+    
+    .category-price {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .add {
+        padding: 10px;
+    }
+    
+    .add-image-upload img {
+        width: 120px;
+        height: 120px;
+    }
 }

@@ -1,55 +1,67 @@
 import foodModel from "../models/foodModel.js";
 import fs from 'fs';
+import path from 'path';
 
-// add food items
+// Add food items
 const addFood = async (req, res) => {
-    // Check if file is attached
-    if (!req.file) {
-        return res.status(400).json({ success: false, message: "Image file is required" });
-    }
+  if (!req.file) {
+    return res.status(400).json({ success: false, message: "Image file is required" });
+  }
 
-    let image_filename = req.file.filename;
+  const image_filename = req.file.filename;
+  const { name, description, price, category } = req.body;
 
-    const food = new foodModel({
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        category: req.body.category,
-        image: image_filename
-    });
+  const food = new foodModel({
+    name,
+    description,
+    price,
+    category,
+    image: image_filename
+  });
 
-    try {
-        await food.save();
-        res.status(201).json({ success: true, message: "Food item added successfully" });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ success: false, message: "Error adding food item", error: error.message });
-    }
+  try {
+    // No need to check for admin role - already handled by middleware
+    await food.save();
+    res.status(201).json({ success: true, message: "Food added successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 };
 
-//all food list
-const listFood = async (req,res)=>{
-    try {
-        const foods =await foodModel.find({});
-        res.json({success:true,data:foods})
-    } catch (error) {
-        console.log(error);
-        res.json({success:false,message:"error"})
+// List all food items
+const listFood = async (req, res) => {
+  try {
+    const foods = await foodModel.find({});
+    res.status(200).json({ success: true, data: foods });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
+// Remove food items
+const removeFood = async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    // No need to check for admin role - already handled by middleware
+    const food = await foodModel.findById(id);
+    if (!food) {
+      return res.status(404).json({ success: false, message: "Food item not found." });
     }
-}
 
-//remove food items
-const removeFood = async (req,res)=>{
-    try {
-        const food=await foodModel.findById(req.body.id);
-        fs.unlink(`uploads/${food.image}`,()=>{})
+    const imagePath = path.join("uploads", food.image);
+    fs.unlink(imagePath, (err) => {
+      if (err) console.error(err);
+    });
 
-        await foodModel.findByIdAndDelete(req.body.id)
-        res.json({success:true,message:"Food Removed"})
-    } catch (error) {
-        console.log(error);
-        res.json({success:false,message:"Error removing food item",error:error.message})
-    }
-}
+    await foodModel.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: "Food removed successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
 
-export { addFood , listFood,removeFood};
+export { addFood, listFood, removeFood };

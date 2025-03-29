@@ -1,14 +1,16 @@
 .sidebar{
-    width: 18%;
-    min-height: 100vh;
-    border: 1.5px solid #a9a9a9;
-    border-top: 0;
-    font-size: max(1vw,10px);
+    width: 250px;
+    min-height: calc(100vh - 60px);
+    border-right: 1.5px solid #a9a9a9;
+    font-size: 16px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    z-index: 90;
 }
 
 .sidebar-options{
-    padding-top: 50px;
-    padding-left: 20%;
+    padding-top: 30px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -19,17 +21,78 @@
     align-items: center;
     gap: 12px;
     border: 1px solid #a9a9a9;
-    border-right: 0;
-    padding: 8px 10px;
-    border-radius: 3px 0px 0px 3px;
+    padding: 12px 15px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
+
+.sidebar-option img {
+    width: 20px;
+    height: 20px;
+}
+
 .sidebar-option.active{
-    background-color: #fff0ef ;
+    background-color: #fff0ef;
     border-color: tomato;
+    color: tomato;
 }
-@media (max-width:900px) {
-    .sidebar-option p{
+
+.sidebar-option:hover {
+    background-color: #fafafa;
+    transform: translateX(5px);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .sidebar-option {
+        padding: 10px 12px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+        position: fixed;
+        top: 60px;
+        left: -100px; /* Hidden by default */
+        height: calc(100vh - 60px);
+        transition: left 0.3s ease;
+        z-index: 100;
+        background-color: white;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .sidebar.mobile-open {
+        left: 0; /* Visible when mobile-open class is added */
+    }
+    
+    .sidebar-options {
+        padding-left: 10px;
+    }
+    
+    .sidebar-option {
+        justify-content: center;
+        padding: 15px 10px;
+    }
+    
+    .sidebar-option p {
         display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 60px;
+    }
+    
+    .sidebar-options {
+        padding-left: 5px;
+        gap: 15px;
     }
 }

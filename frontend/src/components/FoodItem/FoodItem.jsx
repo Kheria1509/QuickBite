@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./FoodItem.css";
-import { assets } from "../../assets/assets";
+import { assets } from "../../assets/assets.js";
 import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ id, name, price, description, image }) => {
@@ -31,7 +31,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           <img src={assets.rating_starts} alt="" />
         </div>
         <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">${price}</p>
+        <p className="food-item-price">₹{price}</p>
       </div>
     </div>
   );
