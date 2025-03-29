@@ -1,16 +1,20 @@
 .cart{
-    margin-top: 100px;
+    margin-top: 80px;
+    padding: 0 15px;
 }
 .cart-items-title{
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
     color: grey;
-    font-size: max(1vw,12px);
+    font-size: 14px;
+    padding: 10px 0;
 }
 .cart-items-item{
-    margin: 10px 0px;
-    color: black;
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    align-items: center;
 }
 .cart-items-item img{
     width: 80px;
@@ -23,18 +27,27 @@
 }
 .cart-items-item .cross{
     cursor: pointer;
+    color: #333;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
 }
 .cart-bottom{
     display: flex;
-    margin-top: 80px;
+    margin-top: 60px;
+    margin-bottom: 40px;
     justify-content: space-between;
-    gap: max(12vw,20px);
+    gap: 30px;
 }
 .cart-total{
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 .cart-total-details{
     display: flex;
@@ -42,23 +55,28 @@
     color: #555;
 }
 .cart-total hr{
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 .cart-total button{
     border: none;
-    color: aliceblue;
-    background-color:tomato ;
-    width: max(15vw,200px);
-    padding: 12px 0px;
+    color: white;
+    background-color: tomato;
+    width: 100%;
+    padding: 12px 0;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.cart-total button:hover {
+    background-color: #e63900;
 }
 .cart-promocode{
     flex: 1;
-
 }
 .cart-promocode p{
     color: #555;
+    margin-bottom: 10px;
 }
 .cart-promocode-input{
     margin-top: 10px;
@@ -67,26 +85,104 @@
     align-items: center;
     background-color: #eaeaea;
     border-radius: 4px;
+    overflow: hidden;
 }
 .cart-promocode-input input{
     background: transparent;
     border: none;
     outline: none;
-    padding-left: 10px;
+    padding: 12px;
+    flex: 1;
 }
 .cart-promocode-input button{
-    width: max(10vw,150px);
-    padding: 12px 5px;
+    padding: 12px 15px;
     background-color: black;
     border: none;
-    color: aliceblue;
-    border-radius: 4px;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
 }
-@media (max-width:750px) {
-    .cart-bottom{
-        flex-direction: column-reverse;
+.cart-promocode-input button:hover {
+    background-color: #333;
+}
+/* Tablet Responsive */
+@media (max-width: 900px) {
+    .cart {
+        margin-top: 60px;
     }
-    .cart-promocode{
+    
+    .cart-items-title {
+        font-size: 13px;
+    }
+    
+    .cart-bottom {
+        margin-top: 40px;
+    }
+}
+/* Mobile Responsive */
+@media (max-width: 750px) {
+    .cart-bottom {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+    
+    .cart-promocode {
         justify-content: start;
+    }
+    
+    .cart-promocode-input button {
+        padding: 12px 10px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 600px) {
+    .cart {
+        margin-top: 40px;
+    }
+    
+    .cart-items-title {
+        display: none;
+    }
+    
+    .cart-items-item {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+        padding: 15px 0;
+    }
+    
+    .cart-items-item img {
+        grid-row: span 2;
+        width: 70px;
+    }
+    
+    .cart-items-item .cross {
+        grid-column: 3;
+        grid-row: 1;
+        justify-content: flex-end;
+    }
+    
+    .cart-bottom {
+        margin-top: 30px;
+    }
+    
+    .cart-promocode-input {
+        flex-direction: column;
+        background-color: transparent;
+    }
+    
+    .cart-promocode-input input {
+        width: 100%;
+        padding: 12px;
+        background-color: #eaeaea;
+        border-radius: 4px;
+    }
+    
+    .cart-promocode-input button {
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 4px;
     }
 }

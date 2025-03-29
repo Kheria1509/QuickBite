@@ -1,12 +1,13 @@
 .navbar{
-    padding: 20px 0px;
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 .navbar .logo{
     width: 150px;
-
+    transition: all 0.3s ease;
 }
 .navbar-menu{
     list-style: none;
@@ -28,7 +29,7 @@
     padding: 10px 30px;
     border-radius:50px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 .navbar button:hover{
     background-color: #fff4f2;
@@ -60,7 +61,7 @@
     position:absolute;
     display: none;
     right: 0;
-    z-index: 1;
+    z-index: 10;
 }
 .navbar-profile:hover .nav-profile-dropdown{
     display: flex;
@@ -78,6 +79,7 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    white-space: nowrap;
 }
 .nav-profile-dropdown img{
     width: 20px;
@@ -85,6 +87,94 @@
 .nav-profile-dropdown li:hover{
     color: tomato;
 }
+/* Hamburger menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.line {
+    width: 100%;
+    height: 2px;
+    background-color: #49557e;
+    transition: all 0.3s ease;
+}
+
+.line-1.active {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.line-2.active {
+    opacity: 0;
+}
+
+.line-3.active {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+.navbar-menu-mobile {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 30px 30px;
+    transition: all 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+}
+
+.navbar-menu-mobile.active {
+    right: 0;
+}
+
+.navbar-menu-mobile a {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+}
+
+.mobile-auth {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-auth button {
+    width: 100%;
+}
+
+.mobile-profile-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.mobile-profile-item:hover {
+    background-color: #fff4f2;
+    color: tomato;
+}
+
+.mobile-profile-item img {
+    width: 20px;
+}
+
 @media (max-width:1050px){
     .navbar .logo{
         width: 140px;
@@ -109,9 +199,7 @@
         width: 120px;
     }
     .navbar-menu{
-        gap: 15px;
-        font-size: 16px;
-
+        display: none;
     }
     .navbar-right{
         gap: 20px;
@@ -123,12 +211,25 @@
         padding: 7px 20px;
         font-size: 15px;
     }
-}
-@media (max-width:900px){
-    
-    .navbar-menu{
-        display: none;
-
+    .hamburger {
+        display: flex;
     }
- 
+    .search-icon {
+        display: none;
+    }
+}
+@media (max-width:600px){
+    .navbar {
+        padding: 15px 0;
+    }
+    .navbar .logo {
+        width: 100px;
+    }
+    .navbar-right {
+        gap: 15px;
+    }
+    .navbar-right button {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
 }

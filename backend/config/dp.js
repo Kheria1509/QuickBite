@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
-export const connectDB =async () =>{
-    await mongoose.connect('mongodb+srv://amankheria09:dbKheria_6917@cluster0.4bfkm.mongodb.net/food-del').then(()=>console.log("DB connected"));
-}
+ const connectDB =async () =>{
+    mongoose.connection.on(`connected`,()=>console.log("DB connected"));
+    await mongoose.connect(`${process.env.MONGODB_URL}/food-del`);
+ };
+
+ export default connectDB;

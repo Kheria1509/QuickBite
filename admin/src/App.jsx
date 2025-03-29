@@ -1,32 +1,40 @@
-import React from 'react'
-import Navbar from './components/Navbar/Navbar'
-import Sidebar from './components/Sidebar/Sidebar'
-import {Route, Routes} from 'react-router-dom'
-import Add from './pages/Add/Add'
-import List from './pages/List/List'
-import Orders from './pages/Orders/Orders'
+import React, { useState } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import Sidebar from "./components/Sidebar/Sidebar";
+import { Route, Routes, Navigate } from "react-router-dom";
+import Add from "./pages/Add/Add";
+import List from "./pages/List/List";
+import Orders from "./pages/Orders/Orders";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
-
-const url ="http://localhost:4000"
-
+  const url = "http://localhost:4000";
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+  
   return (
-    <div>
-      <ToastContainer/>
-      <Navbar/>
+    <div className="admin-app">
+      <ToastContainer position="top-center" />
+      <Navbar toggleMenu={toggleMobileMenu} />
       <hr />
-      <div className="app-content">
-        <Sidebar/>
-        <Routes>
-            <Route path="/add" element={<Add url={url}/>}/>
-            <Route path="/list" element={<List url={url}/>}/>
-            <Route path="/orders" element={<Orders url={url}/>}/>
-        </Routes>
+      <div className={`app-content ${mobileMenuOpen ? 'sidebar-open' : ''}`}>
+        <Sidebar isMobileMenuOpen={mobileMenuOpen} />
+        <main className="app-main">
+          <Routes>
+            {/* Redirect root to Add page */}
+            <Route path="/" element={<Navigate to="/add" replace />} />
+            <Route path="/add" element={<Add url={url}/>} />
+            <Route path="/list" element={<List url={url}/>} />
+            <Route path="/orders" element={<Orders url={url}/>} />
+          </Routes>
+        </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

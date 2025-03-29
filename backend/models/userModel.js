@@ -1,12 +1,33 @@
 import mongoose from "mongoose"
 
-const userSchema =new mongoose.Schema({
-    name:{type:String,require:true},
-    email:{type:String,require:true,unique:true},
-    password:{type:String,require:true},
-    cartData:{type:Object,default:{}}
+const userSchema = new mongoose.Schema(
+    {
+      name: { type: String, required: true },
+      email: { type: String, required: true, unique: true },
+      password: { type: String, required: true },
+      verifyOtp:{type:String,default:''},
+      verifyOtpExpireAt:{type:Number,default:0},
+      isVerified:{type:Boolean,default:false},
+      resetOtp:{type:String,default:''},
+      resetOtpExpireAt:{type:Number,default:0},
+      refreshToken: { type: String, default: null },
+      role: {
+        type: String,
+        default: "user",
+        enum: ["user", "admin"], // Only allow specific roles
+      },
+      cartData: {
+        type: [
+          {
+            productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+            quantity: { type: Number, required: true },
+          },
+        ],
+        default: [],
+      },
+    },
+    { minimize: false }
+  );
 
-},{minimize:false})
-
-const userModel =mongoose.user || mongoose.model("user",userSchema);
+const userModel =mongoose.models.user || mongoose.model("user",userSchema);
 export default userModel;
