@@ -2,9 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 import { assets } from "../../assets/assets";
-import PropTypes from "prop-types";
 
-const Sidebar = ({ isMobileMenuOpen }) => {
+const Sidebar = () => {
   const location = useLocation();
   
   const navItems = [
@@ -29,7 +28,7 @@ const Sidebar = ({ isMobileMenuOpen }) => {
   ];
 
   return (
-    <div className={`sidebar ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+    <div className="sidebar">
       <div className="sidebar-options">
         {navItems.map((item) => (
           <Link 
@@ -44,10 +43,6 @@ const Sidebar = ({ isMobileMenuOpen }) => {
       </div>
     </div>
   );
-};
-
-Sidebar.propTypes = {
-  isMobileMenuOpen: PropTypes.bool
 };
 
 export default Sidebar;

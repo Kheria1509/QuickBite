@@ -189,3 +189,110 @@
         font-size: 16px;
     }
 }
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #666;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.order-status {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border-left: 3px solid #888;
+    position: relative;
+}
+
+.order-status.food-processing {
+    border-left-color: #FF9800;
+}
+
+.order-status.out-for-delivery {
+    border-left-color: #2196F3;
+}
+
+.order-status.delivered {
+    border-left-color: #4CAF50;
+}
+
+.status-updating {
+    color: #666;
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.all-status-actions {
+    margin-top: 15px;
+    border-top: 1px dashed #eee;
+    padding-top: 10px;
+}
+
+.all-status-actions p {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.status-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn-next-action {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.btn-active {
+    background-color: #ddd;
+    color: #333;
+    border: 2px solid #666;
+}
+
+.order-complete {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 576px) {
+    .status-buttons {
+        flex-direction: column;
+    }
+    
+    .status-buttons .order-btn {
+        width: 100%;
+    }
+}
+
+/* Update the styles for button states */
+.order-btn:not(.btn-disabled) {
+    cursor: pointer;
+}
+
+.order-btn:not(.btn-disabled):hover {
+    opacity: 0.9;
+}

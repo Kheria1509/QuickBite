@@ -97,3 +97,32 @@ hr {
     padding: 10px;
   }
 }
+
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-overlay {
+    display: block;
+  }
+  
+  .app-content {
+    flex-direction: column;
+  }
+  
+  .app-content.sidebar-open {
+    padding-left: 80px;
+  }
+  
+  .app-main {
+    padding: 15px;
+  }
+}

@@ -104,13 +104,43 @@ const listOrders = async (req, res) => {
 const updateStatus = async (req, res) => {
   try {
     // No need to check admin role - handled by middleware
-    await orderModel.findByIdAndUpdate(req.body.orderId, {
-      status: req.body.status,
+    const { orderId, status } = req.body;
+    
+    if (!orderId) {
+      return res.status(400).json({ success: false, message: "Order ID is required" });
+    }
+    
+    if (!status) {
+      return res.status(400).json({ success: false, message: "Status is required" });
+    }
+    
+    // Validate status values
+    const validStatuses = ["Food Processing", "Out for delivery", "Delivered"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Invalid status. Must be one of: Food Processing, Out for delivery, Delivered" 
+      });
+    }
+    
+    // Find the order first to verify it exists
+    const order = await orderModel.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ success: false, message: "Order not found" });
+    }
+    
+    // Update the order status
+    order.status = status;
+    await order.save();
+    
+    res.json({ 
+      success: true, 
+      message: "Status Updated Successfully",
+      data: { orderId, status }
     });
-    res.json({ success: true, message: "Status Updated Successfully" });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error updating status" });
+    console.error("Error updating status:", error);
+    res.status(500).json({ success: false, message: "Error updating status" });
   }
 };
 
