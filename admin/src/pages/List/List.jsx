@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import "./List.css";
 
-const List = ({ url = "http://localhost:4000" }) => {
+const List = ({ url = import.meta.env.VITE_API_URL || "https://quickbite-backend.vercel.app" }) => {
   const [list, setList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredList, setFilteredList] = useState([]);

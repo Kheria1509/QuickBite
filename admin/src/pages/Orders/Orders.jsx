@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Orders.css";
 import { assets } from "../../assets/assets";
 
-const Orders = ({ url = "http://localhost:4000" }) => {
+const Orders = ({ url = import.meta.env.VITE_API_URL || "https://quickbite-backend.vercel.app" }) => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [updatingOrderId, setUpdatingOrderId] = useState(null);

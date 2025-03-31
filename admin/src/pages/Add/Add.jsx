@@ -5,7 +5,7 @@ import "./Add.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
-const Add = ({ url = "http://localhost:4000" }) => {
+const Add = ({ url = import.meta.env.VITE_API_URL || "https://quickbite-backend.vercel.app" }) => {
   const { api } = useContext(StoreContext);
 
   const [image, setImage] = useState(null);

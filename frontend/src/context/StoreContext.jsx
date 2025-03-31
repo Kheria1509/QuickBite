@@ -9,7 +9,7 @@ const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
   const [token, setToken] = useState("");
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const url = "http://localhost:4000";
+  const url = import.meta.env.VITE_API_URL || "https://quickbite-backend.vercel.app";
 
   // Set up axios instance with base URL
   const api = axios.create({

@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const url = "http://localhost:4000";
+  const url = import.meta.env.VITE_API_URL || "https://quickbite-backend.vercel.app";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   

@@ -13,7 +13,7 @@ const StoreContextProvider = ({ children }) => {
   const [admin, setAdmin] = useState(true);
 
   const api = axios.create({
-    baseURL: "http://localhost:4000",
+    baseURL: import.meta.env.VITE_API_URL || "https://quickbite-backend.vercel.app",
     headers: {
       'Content-Type': 'application/json',
     }
