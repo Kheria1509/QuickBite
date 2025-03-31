@@ -7,6 +7,13 @@ import userRouter from "./routes/userRoute.js"
 import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 import cookieParser from "cookie-parser";
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get directory name in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //app config
 const app = express()
@@ -19,6 +26,13 @@ console.log("Environment variables loaded:", {
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET ? "Set" : "Not set",
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY ? "Set" : "Not set"
 });
+
+// Ensure uploads directory exists
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  console.log('Creating uploads directory...');
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 // Determine allowed origins based on environment
 const getAllowedOrigins = () => {

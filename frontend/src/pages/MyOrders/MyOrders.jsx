@@ -66,8 +66,26 @@ const MyOrders = () => {
                     <p className="order-price">₹{order.amount}.00</p>
                     <p className="order-count">Items: {order.items.length}</p>
                     <p className="order-status">
-                      <span className="status-dot">&#x25cf;</span>
-                      <b> {order.status}</b>
+                      <span 
+                        className={`status-dot ${
+                          order.status === "Delivered" 
+                            ? "status-delivered" 
+                            : order.status === "Out for delivery" 
+                              ? "status-out-for-delivery"
+                              : "status-processing"
+                        }`}
+                      >
+                        &#x25cf;
+                      </span>
+                      <span className={`status-label ${
+                        order.status === "Delivered" 
+                          ? "status-delivered" 
+                          : order.status === "Out for delivery" 
+                            ? "status-out-for-delivery"
+                            : "status-processing"
+                      }`}>
+                        {order.status}
+                      </span>
                     </p>
                   </div>
                 </div>

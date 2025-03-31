@@ -7,15 +7,14 @@
   "scripts": {
     "server": "nodemon server.js",
     "start": "node server.js",
-    "build": "echo 'Build step completed'"
+    "build": "npm ci"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0 <23.0.0"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",

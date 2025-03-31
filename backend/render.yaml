@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: quickbite-backend
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+      - key: NODE_ENV
+        value: production 
