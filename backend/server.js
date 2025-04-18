@@ -84,7 +84,15 @@ app.use("/api/auth", userRouter);
 
 // api endpoints
 app.use("/api/food", foodRouter);
-app.use("/images", express.static('uploads'));
+app.get('/images/:filename', (req, res) => {
+  const filePath = path.join(uploadsDir, req.params.filename);
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    res.status(404).json({ message: 'File not found' });
+  }
+});
+
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
