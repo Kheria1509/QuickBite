@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "./LoginPopup.css";
+import "./loginPopup.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import { toast } from "react-toastify";
