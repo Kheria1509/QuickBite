@@ -36,15 +36,23 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Determine allowed origins based on environment
 const getAllowedOrigins = () => {
-  const origins = ['https://quick-bite-ecru-five.vercel.app/', 'https://quickbite-admin.vercel.app'];
-  
-  // Add localhost origins for development
+  const origins = [
+    'https://quick-bite-ecru-five.vercel.app',
+    'https://quickbite-admin.vercel.app'
+  ];
+
   if (process.env.NODE_ENV === 'development') {
-    origins.push('http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5176');
+    origins.push(
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'http://localhost:5176'
+    );
   }
-  
+
   return origins;
 };
+
 
 // CORS configuration
 const corsOptions = {
