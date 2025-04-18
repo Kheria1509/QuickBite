@@ -36,7 +36,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Determine allowed origins based on environment
 const getAllowedOrigins = () => {
-  const origins = ['https://quickbite-frontend.vercel.app', 'https://quickbite-admin.vercel.app'];
+  const origins = ['https://quick-bite-ecru-five.vercel.app/', 'https://quickbite-admin.vercel.app'];
   
   // Add localhost origins for development
   if (process.env.NODE_ENV === 'development') {
