@@ -1,5 +1,30 @@
 # QuickBite
-This is a full stack web site for the food delivery .where a person can order food through online process 
+This is a full stack food delivery web application that consists of two main interfaces: a customer-facing frontend and an admin dashboard for restaurant management.
+
+## Application Overview
+
+### Customer Frontend
+The frontend is a user-friendly interface where customers can:
+- Browse through a variety of food items with images and descriptions
+- Add items to their cart
+- Place orders and track delivery status
+- View their order history
+- Manage their profile and delivery addresses
+
+### Admin Dashboard
+The admin dashboard provides restaurant management capabilities:
+- Manage food items (add, edit, delete)
+- View and update order statuses
+- Track order history and customer details
+- Monitor delivery status
+- Manage menu categories and pricing
+- View order analytics and reports
+
+Here's a preview of the admin interface showing the food items management and order tracking system:
+
+![Admin Dashboard Preview](./admin/src/assets/Screenshot%202025-04-27%20124754.png)
+![Admin Dashboard Preview](./admin/src/assets/Screenshot%202025-04-27%20124815.png)
+![Admin Dashboard Preview](./admin/src/assets/Screenshot%202025-04-27%20124903.png)
 
 
 ## Run Locally
